@@ -1,0 +1,48 @@
+@extends('layouts.master')
+
+@section('content')
+
+<div class="main-content mt-4">
+
+    <div class="card border-0" style="box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); border-radius: 10px;">
+        <div class="card-header d-flex justify-content-between align-items-center text-white" style="background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%); border-top-left-radius: 10px; border-top-right-radius: 10px;">
+            <h3 class="mb-0">Create Post</h3>
+            <div>
+                <a class="btn btn-light btn-sm" href="{{ route('posts.create') }}" style="border-radius: 20px; padding: 5px 15px; margin-right: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s, color 0.3s;">Create</a>
+                <a class="btn btn-warning btn-sm" href="" style="border-radius: 20px; padding: 5px 15px; margin-right: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s, color 0.3s;">Thrashed</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped table-hover">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col" style="width: 10%">Image</th>
+                        <th scope="col" style="width: 20%">Title</th>
+                        <th scope="col" style="width: 30%">Description</th>
+                        <th scope="col" style="width: 10%">Category</th>
+                        <th scope="col" style="width: 10%">Publish Date</th>
+                        <th scope="col" style="width: 20%">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">1</th>
+                        <td><img src="https://picsum.photos/200" alt="Post Image" class="img-thumbnail" width="100"></td>
+                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
+                        <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel provident labore nulla obcaecati eaque optio facere sint neque aperiam.</td>
+                        <td>News</td>
+                        <td>02-05-24</td>
+                        <td>
+                            <a href="#" class="btn btn-success btn-sm">Show</a>
+                            <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@endsection
