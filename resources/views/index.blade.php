@@ -37,7 +37,12 @@
                         <td>
                             <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm">Show</a>
                             <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            {{-- <a href="#" class="btn btn-danger btn-sm">Delete</a> --}}
+                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
