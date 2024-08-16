@@ -26,19 +26,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach ($posts as $post)
                     <tr>
-                        <th scope="row">1</th>
-                        <td><img src="https://picsum.photos/200" alt="Post Image" class="img-thumbnail" width="100"></td>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                        <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vel provident labore nulla obcaecati eaque optio facere sint neque aperiam.</td>
-                        <td>News</td>
-                        <td>02-05-24</td>
+                        <th scope="row">{{ $post->id }}</th>
+                        <td><img src="{{ asset($post->image) }}" alt="Post Image" class="img-thumbnail" width="100"></td>
+                        <td>{{ $post->title }}</td>
+                        <td>{{ $post->description }}</td>
+                        <td>{{ $post->category_id }}</td>
+                        <td>{{ date('d-m-Y', strtotime($post->created_at)) }}</td>
                         <td>
                             <a href="#" class="btn btn-success btn-sm">Show</a>
                             <a href="#" class="btn btn-primary btn-sm">Edit</a>
                             <a href="#" class="btn btn-danger btn-sm">Delete</a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

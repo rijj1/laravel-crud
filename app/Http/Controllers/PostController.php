@@ -13,7 +13,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        return view('index');
+        $posts = Post::all();
+        return view('index', compact('posts'));
     }
 
     /**
@@ -38,10 +39,10 @@ class PostController extends Controller
         ],['category_id.required' => "The category field is required."]);
 
         $fileName = time() . '_' . $request->image->getClientOriginalName();
-        $filePath = $request->image->storeAs('uploads',$fileName);
+        $filePath = $request->image->storeAs('uploads', $fileName);
 
         $post = new Post();
-        $post->image = $filePath;
+        $post->image = 'storage/' . $filePath;
         $post->title = $request->title;
         $post->description = $request->description;
         $post->category_id = $request->category_id;
