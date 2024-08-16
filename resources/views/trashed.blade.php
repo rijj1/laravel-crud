@@ -38,7 +38,7 @@
                             <div class='d-flex'>
                                 <a href="{{ route('post.restore', $post->id) }}" class="btn btn-success btn-sm me-2">Restore</a>
                                 {{-- <a href="#" class="btn btn-danger btn-sm">Delete</a> --}}
-                                <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                <form action="{{ route('posts.forceDelete', $post->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
