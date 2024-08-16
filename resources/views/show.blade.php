@@ -30,7 +30,7 @@
                             </tr>
                             <tr>
                                 <th>Category</th>
-                                <td>{{ $post->category_id }}</td>
+                                <td>{{ $post->category->name }}</td>
                             </tr>
                             <tr>
                                 <th>Publish Date</th>

@@ -32,17 +32,20 @@
                         <td><img src="{{ asset($post->image) }}" alt="Post Image" class="img-thumbnail" width="100"></td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->description }}</td>
-                        <td>{{ $post->category_id }}</td>
+                        <td>{{ $post->category->name }}</td>
                         <td>{{ date('d-m-Y', strtotime($post->created_at)) }}</td>
                         <td>
-                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm">Show</a>
-                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                            {{-- <a href="#" class="btn btn-danger btn-sm">Delete</a> --}}
-                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
+                            <div class="d-flex">
+                                <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm me-2">Show</a>
+                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary btn-sm me-2">Edit</a>
+                                {{-- <a href="#" class="btn btn-danger btn-sm">Delete</a> --}}
+                                <form action="{{ route('posts.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to move this post to trash?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </div>
+
                         </td>
                     </tr>
                     @endforeach

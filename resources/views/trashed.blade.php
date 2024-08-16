@@ -32,13 +32,13 @@
                         <td><img src="{{ asset($post->image) }}" alt="Post Image" class="img-thumbnail" width="100"></td>
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->description }}</td>
-                        <td>{{ $post->category_id }}</td>
+                        <td>{{ $post->category->name }}</td>
                         <td>{{ date('d-m-Y', strtotime($post->created_at)) }}</td>
                         <td>
                             <div class='d-flex'>
                                 <a href="{{ route('post.restore', $post->id) }}" class="btn btn-success btn-sm me-2">Restore</a>
                                 {{-- <a href="#" class="btn btn-danger btn-sm">Delete</a> --}}
-                                <form action="{{ route('posts.forceDelete', $post->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                <form action="{{ route('posts.forceDelete', $post->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post permanently?');">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-danger btn-sm">Delete</button>
