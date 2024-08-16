@@ -14,7 +14,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(10);
         return view('index', compact('posts'));
     }
 
@@ -110,11 +110,11 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->delete();
 
-        return redirect()->route('posts.index');
+        return redirect()->back();
     }
 
     public function trashed(){
-        $posts = Post::onlyTrashed()->get();
+        $posts = Post::onlyTrashed()->paginate(10);
         return view('trashed',compact('posts'));
     }
 
