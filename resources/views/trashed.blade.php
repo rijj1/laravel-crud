@@ -9,7 +9,7 @@
             <h3 class="mb-0">Trashed Post</h3>
             <div>
                 <a class="btn btn-light btn-sm" href="{{ route('posts.create') }}" style="border-radius: 20px; padding: 5px 15px; margin-right: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s, color 0.3s;">Create</a>
-                <a class="btn btn-warning btn-sm" href="" style="border-radius: 20px; padding: 5px 15px; margin-right: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s, color 0.3s;">Thrashed</a>
+                <a class="btn btn-warning btn-sm" href="{{ route('posts.index') }}" style="border-radius: 20px; padding: 5px 15px; margin-right: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s, color 0.3s;">All Posts</a>
             </div>
         </div>
         <div class="card-body">
@@ -35,14 +35,15 @@
                         <td>{{ $post->category_id }}</td>
                         <td>{{ date('d-m-Y', strtotime($post->created_at)) }}</td>
                         <td>
-                            <a href="{{ route('posts.show', $post->id) }}" class="btn btn-success btn-sm">Show</a>
-                            <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                            {{-- <a href="#" class="btn btn-danger btn-sm">Delete</a> --}}
-                            <form action="{{ route('posts.destroy', $post->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                            </form>
+                            <div class='d-flex'>
+                                <a href="{{ route('post.restore', $post->id) }}" class="btn btn-success btn-sm me-2">Restore</a>
+                                {{-- <a href="#" class="btn btn-danger btn-sm">Delete</a> --}}
+                                <form action="" method="POST" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     @endforeach
