@@ -124,7 +124,7 @@ class PostController extends Controller
     }
 
     public function trashed(){
-        $this->authorize('create', Post::class);
+        $this->authorize('trash', Post::class);
 
         $posts = Post::onlyTrashed()->paginate(10);
         return view('trashed',compact('posts'));

@@ -11,7 +11,9 @@
             @can('create', \App\Models\Post::class)
             <div>
                 <a class="btn btn-light btn-sm" href="{{ route('posts.create') }}" style="border-radius: 20px; padding: 5px 15px; margin-right: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s, color 0.3s;">Create</a>
+                @can('trash', \App\Models\Post::class)
                 <a class="btn btn-warning btn-sm" href="{{ route('posts.trashed') }}" style="border-radius: 20px; padding: 5px 15px; margin-right: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); transition: background-color 0.3s, color 0.3s;">Thrashed</a>
+                @endcan
             </div>
             @endcan
         </div>

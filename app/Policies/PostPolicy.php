@@ -30,7 +30,7 @@ class PostPolicy
      */
     public function create(User $user): bool
     {
-        return Auth::user()->is_admin;
+        return $user->role_id == 1 || $user->role_id == 2;
     }
 
     /**
@@ -38,7 +38,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post): bool
     {
-        return Auth::user()->is_admin;
+        return $user->role_id == 1 || $user->role_id == 2;
     }
 
     /**
@@ -46,15 +46,21 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        return Auth::user()->is_admin;
+        return $user->role_id == 1;
     }
+
+    public function trash(User $user): bool
+    {
+        return $user->role_id == 1;
+    }
+
 
     /**
      * Determine whether the user can restore the model.
      */
     public function restore(User $user, Post $post): bool
     {
-        return Auth::user()->is_admin;
+        return $user->role_id == 1;
     }
 
     /**
@@ -62,6 +68,6 @@ class PostPolicy
      */
     public function forceDelete(User $user, Post $post): bool
     {
-        return Auth::user()->is_admin;
+        return $user->role_id == 1;
     }
 }
