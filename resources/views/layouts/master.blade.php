@@ -34,6 +34,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('posts.trashed') }}">Trashed Posts</a>
                     </li>
+                    <li class="nav-item">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="nav-link btn btn-danger">Logout</button>
+                        </form>
+                    </li>
                 </ul>
             </div>
         </div>

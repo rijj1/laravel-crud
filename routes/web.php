@@ -4,6 +4,7 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\PostCondition;
 use App\Http\Controllers\ProfileController;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,8 +22,17 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/posts/trash', [PostController:: class, 'trashed'])->name('posts.trashed');
-Route::get('post/{id}/restore', [PostController::class,'restore'])->name('post.restore');
-Route::delete('post/{id}/force-delete', [PostController::class, 'forceDelete'])->name('posts.forceDelete');
+/* CRUDE ROUTES */
+Route::middleware(['auth'])->group(function () {
+    Route::get('/posts/trash', [PostController:: class, 'trashed'])->name('posts.trashed');
+    Route::get('post/{id}/restore', [PostController::class,'restore'])->name('post.restore');
+    Route::delete('post/{id}/force-delete', [PostController::class, 'forceDelete'])->name('posts.forceDelete');
 
-Route::resource('posts', PostController::class);
+    Route::resource('posts', PostController::class);
+
+});
+
+
+Route::get('user-data',function(){
+    return Auth::user();
+});
