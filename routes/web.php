@@ -4,7 +4,10 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\PostCondition;
 use App\Http\Controllers\ProfileController;
+use App\Jobs\SendMail;
+use App\Mail\PostPublished;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,6 +35,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-Route::get('user-data',function(){
-    return Auth::user();
+Route::get('send-mail',function(){
+    SendMail::dispatch();
+    dd('Mail has been sent');
 });
