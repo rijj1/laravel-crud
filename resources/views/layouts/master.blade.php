@@ -31,8 +31,18 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('posts.index') }}">All Posts</a>
                     </li>
+
+                    @can('create', App\Models\Post::class)
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('posts.trashed') }}">Trashed Posts</a>
+                    </li>
+                    @endcan
+
+                    <li class="nav-item">
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="nav-link btn btn-danger">Logout</button>
+                        </form>
                     </li>
                 </ul>
             </div>
