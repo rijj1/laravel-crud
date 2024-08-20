@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\UserRegister;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\PostCondition;
@@ -38,4 +39,9 @@ Route::middleware(['auth'])->group(function () {
 Route::get('send-mail',function(){
     SendMail::dispatch();
     dd('Mail has been sent');
+});
+
+Route::get('user-register', function(){
+    $email= 'user123@gmail.com';
+    event(new UserRegister($email));
 });

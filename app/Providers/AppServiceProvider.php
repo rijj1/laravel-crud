@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Events\UserRegister;
+use App\Listeners\SendWelcomeEmail;
 use App\Models\Post;
+use App\Observers\PostObserver;
 use App\Policies\PostPolicy;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Gate;
@@ -24,18 +27,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Paginator::useBootstrapFive();
+        //Gate Policy
         Gate::policy(Post::class, PostPolicy::class);
-        // create_post, edit_post, delete_post
-        // Gate::define('create_post', function(){
-        //     return Auth::user()->is_admin;
-        // });
+        //observer
+        Post::observe(PostObserver::class);
 
-        // Gate::define('edit_post', function(){
-        //     return Auth::user()->is_admin;
-        // });
-
-        // Gate::define('delete_post', function(){
-        //     return Auth::user()->is_admin;
-        // });
     }
 }
