@@ -7,6 +7,7 @@ use PHPUnit\Framework\Attributes\PostCondition;
 use App\Http\Controllers\ProfileController;
 use App\Jobs\SendMail;
 use App\Mail\PostPublished;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
@@ -45,3 +46,8 @@ Route::get('user-register', function(){
     $email= 'user123@gmail.com';
     event(new UserRegister($email));
 });
+
+Route::get('greeting/{locale?}', function($locale = 'en'){
+    App::setLocale($locale);
+    return view('greeting');
+})->name('greeting');
